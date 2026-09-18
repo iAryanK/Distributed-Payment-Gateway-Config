@@ -2,4 +2,4 @@ server.port: 9020
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/razorpay-payment-db
+    url: jdbc:postgresql://localhost:5432/razorpay_payment_db
