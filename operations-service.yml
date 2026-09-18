@@ -2,7 +2,7 @@ server.port: 9030
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/razorpay-operations-db
+    url: jdbc:postgresql://localhost:5432/razorpay_operations_db
 
 app:
   webhook:
