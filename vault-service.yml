@@ -5,7 +5,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/razorpay_vault_db
 
 vault:
-  master-key: ${VAULT_SECRET:K4vR2C+2fPmw8Qv8+Z7u0x3M0ehjv4s8l4m4B8VQ6jQ=}
+  master-key: K4vR2C+2fPmw8Qv8+Z7u0x3M0ehjv4s8l4m4B8VQ6jQ=
   
 resilience4j:
   thread-pool-bulkhead:
@@ -14,3 +14,17 @@ resilience4j:
         core-thread-pool-size: 5
         max-thread-pool-size: 10
         queue-capacity: 20
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: k8s
+  datasource:
+    url: jdbc:postgresql://postgres.razorpay-core.svc.cluster.local:5432/razorpay_vault_db
+    username: vault_user
+    password: ${VAULT_DB_PASSWORD}
+
+vault:
+  master-key: ${VAULT_MASTER_KEY}

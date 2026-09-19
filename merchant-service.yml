@@ -5,7 +5,24 @@ spring:
     url: jdbc:postgresql://localhost:5432/razorpay_merchant_db
 
 jwt:
-  secret-key: ${JWT_SECRET:K4vR2C+2fPmw8Qv8+Z7u0x3M0ehjv4s8l4m4B8VQ6jQp}
+  secret-key: K4vR2C+2fPmw8Qv8+Z7u0x3M0ehjv4s8l4m4B8VQ6jQp
 
 webhook:
-  secret-encryption-key:  ${JWT_SECRET:N67VTNJb225i/8Cq+urWr6dkBGSJCusret4g9oFtDSw=}
+  secret-encryption-key: N67VTNJb225i/8Cq+urWr6dkBGSJCusret4g9oFtDSw=
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: k8s
+  datasource:
+    url: jdbc:postgresql://postgres.razorpay-core.svc.cluster.local:5432/razorpay_merchant_db
+    username: merchant_user
+    password: ${MERCHANT_DB_PASSWORD}
+
+jwt:
+  secret-key: ${JWT_SECRET}
+
+webhook:
+  secret-encryption-key: ${WEBHOOK_SECRET_ENCRYPTION_KEY}
